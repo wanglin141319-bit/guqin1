@@ -1,0 +1,2445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>松风琴社 | 传承千年古琴文化</title>
+    <meta name="description" content="松风琴社，传承千年古琴文化，打造现代人的精神栖息地。手工古琴、收藏级名琴、古琴教学与文化传播。">
+    <meta name="keywords" content="古琴,古琴销售,手工古琴,古琴文化,松风琴社,古琴教学,古琴购买">
+    <style>
+        /* ================================================
+           松风琴社 - 东方禅意官网
+           Ink Wash Aesthetics · Minimalist Oriental Design
+        ================================================ */
+
+        /* === 字体与基础变量 === */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&family=Ma+Shan+Zheng&display=swap');
+
+        :root {
+            /* 东方色调 */
+            --ink-black: #0a0a0a;
+            --ink-deep: #1a1512;
+            --ink-dark: #2d2520;
+            --paper-white: #f5f0e8;
+            --paper-warm: #ede5d8;
+            --pine-green: #3d6b5c;
+            --pine-light: #5a8a78;
+            --pine-pale: #a8c5b8;
+            --bronze: #8b7355;
+            --bronze-light: #c4a87a;
+            --bronze-gold: #d4b896;
+            --mist: rgba(245, 240, 232, 0.05);
+            --shadow: rgba(10, 10, 10, 0.3);
+
+            /* 当前主题色（默认亮色） */
+            --bg-primary: var(--paper-white);
+            --bg-secondary: var(--paper-warm);
+            --bg-card: rgba(237, 229, 216, 0.7);
+            --text-primary: var(--ink-deep);
+            --text-secondary: #5a4a3a;
+            --text-muted: #8a7a6a;
+            --accent: var(--pine-green);
+            --accent-gold: var(--bronze-gold);
+            --border: rgba(45, 37, 32, 0.12);
+            --overlay: rgba(10, 10, 10, 0.6);
+
+            /* 间距 */
+            --section-pad: clamp(60px, 10vw, 120px);
+            --container-max: 1200px;
+            --border-radius: 4px;
+
+            /* 字体 */
+            --font-serif: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+            --font-sans: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            --font-brush: 'Ma Shan Zheng', 'KaiTi', cursive;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f0d0b;
+            --bg-secondary: #1a1512;
+            --bg-card: rgba(26, 21, 18, 0.8);
+            --text-primary: var(--paper-warm);
+            --text-secondary: #b8a898;
+            --text-muted: #7a6a5a;
+            --border: rgba(200, 180, 150, 0.1);
+            --shadow: rgba(0, 0, 0, 0.5);
+            --overlay: rgba(0, 0, 0, 0.7);
+        }
+
+        /* === 重置与基础 === */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--bronze) var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--bronze); border-radius: 3px; }
+
+        body {
+            font-family: var(--font-serif);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+            cursor: default;
+        }
+
+        /* 水墨光晕画布 */
+        #ink-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.6;
+        }
+
+        /* === 布局工具 === */
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 clamp(20px, 5vw, 60px);
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-sans);
+            font-size: clamp(0.85rem, 2vw, 1rem);
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+            margin: 0 auto 3rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 0.3em 1.2em;
+            border-radius: 2px;
+            margin-bottom: 1rem;
+        }
+
+        /* === 导航栏 === */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 0 clamp(20px, 5vw, 60px);
+            transition: all 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(245, 240, 232, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 30px var(--shadow);
+        }
+
+        [data-theme="dark"] .navbar.scrolled {
+            background: rgba(15, 13, 11, 0.92);
+        }
+
+        .nav-inner {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .nav-logo {
+            font-family: var(--font-brush);
+            font-size: 1.6rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo .logo-char {
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0; right: 0;
+            height: 1px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a:hover::after { transform: scaleX(1); }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            width: 36px; height: 36px;
+            border: 1px solid var(--border);
+            background: transparent;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            color: var(--bg-primary);
+            background: var(--ink-deep);
+            border: none;
+            padding: 0.5em 1.5em;
+            border-radius: 2px;
+            cursor: pointer;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        [data-theme="dark"] .nav-cta {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        .nav-cta:hover { opacity: 0.85; }
+
+        /* 移动端菜单 */
+        .nav-mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .nav-mobile-toggle span {
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        /* === 英雄区 === */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 30% 60%, rgba(61, 107, 92, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 30%, rgba(139, 115, 85, 0.1) 0%, transparent 50%),
+                linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        /* 山水意境背景 */
+        .hero-landscape {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 60%;
+            overflow: hidden;
+        }
+
+        .mountain {
+            position: absolute;
+            bottom: 0;
+            border-left: 120px solid transparent;
+            border-right: 120px solid transparent;
+            border-bottom: 200px solid;
+            opacity: 0.08;
+        }
+
+        .mountain-1 { left: 5%; border-bottom-color: var(--text-primary); border-left-width: 180px; border-right-width: 180px; border-bottom-width: 320px; opacity: 0.05; }
+        .mountain-2 { left: 25%; border-bottom-color: var(--accent); border-left-width: 150px; border-right-width: 150px; border-bottom-width: 260px; opacity: 0.06; }
+        .mountain-3 { right: 10%; border-bottom-color: var(--text-primary); border-left-width: 200px; border-right-width: 200px; border-bottom-width: 350px; opacity: 0.04; }
+        .mountain-4 { left: 50%; transform: translateX(-50%); border-bottom-color: var(--bronze); border-left-width: 130px; border-right-width: 130px; border-bottom-width: 220px; opacity: 0.07; }
+
+        /* 雾气动画 */
+        .mist-layer {
+            position: absolute;
+            bottom: 20%;
+            left: -20%;
+            right: -20%;
+            height: 200px;
+            background: linear-gradient(90deg, transparent, rgba(245, 240, 232, 0.3), transparent);
+            animation: mist-drift 20s ease-in-out infinite;
+            filter: blur(30px);
+        }
+
+        .mist-layer-2 {
+            bottom: 30%;
+            animation-delay: -7s;
+            animation-duration: 25s;
+            opacity: 0.6;
+        }
+
+        @keyframes mist-drift {
+            0%, 100% { transform: translateX(-10%) scaleX(1); }
+            50% { transform: translateX(10%) scaleX(1.1); }
+        }
+
+        /* 飘动的墨点 */
+        .ink-particle {
+            position: absolute;
+            width: 2px; height: 2px;
+            background: var(--text-muted);
+            border-radius: 50%;
+            opacity: 0;
+            animation: ink-float linear infinite;
+        }
+
+        @keyframes ink-float {
+            0% { opacity: 0; transform: translateY(0) scale(1); }
+            20% { opacity: 0.4; }
+            80% { opacity: 0.2; }
+            100% { opacity: 0; transform: translateY(-100vh) scale(0.5); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fade-in-up 1.2s ease forwards;
+        }
+
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-brand {
+            font-family: var(--font-brush);
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--accent);
+            letter-spacing: 0.5em;
+            margin-bottom: 2rem;
+            animation: fade-in-up 1.2s ease 0.2s both;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+            animation: fade-in-up 1.2s ease 0.4s both;
+        }
+
+        .hero-title .accent {
+            color: var(--accent);
+            font-weight: 300;
+        }
+
+        .hero-poem {
+            font-family: var(--font-serif);
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            font-weight: 300;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 1rem;
+            letter-spacing: 0.2em;
+            animation: fade-in-up 1.2s ease 0.6s both;
+        }
+
+        .hero-desc {
+            font-family: var(--font-sans);
+            font-size: clamp(0.85rem, 2vw, 1rem);
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            animation: fade-in-up 1.2s ease 0.8s both;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fade-in-up 1.2s ease 1s both;
+        }
+
+        .btn-primary {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            padding: 0.9em 2.5em;
+            background: var(--ink-deep);
+            color: var(--paper-white);
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--accent);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+
+        .btn-primary:hover::before { transform: translateX(0); }
+        .btn-primary span { position: relative; z-index: 1; }
+
+        .btn-secondary {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            padding: 0.9em 2.5em;
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            animation: fade-in-up 1.2s ease 1.5s both;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(180deg, var(--text-muted), transparent);
+            animation: scroll-bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes scroll-bounce {
+            0%, 100% { transform: scaleY(1); opacity: 1; }
+            50% { transform: scaleY(0.5); opacity: 0.4; }
+        }
+
+        /* === 信任背书条 === */
+        .trust-bar {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 0;
+        }
+
+        .trust-items {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(2rem, 6vw, 5rem);
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .trust-icon {
+            font-size: 1.2rem;
+            color: var(--accent);
+        }
+
+        /* === 品牌理念区 === */
+        .about {
+            padding: var(--section-pad) 0;
+            background: var(--bg-primary);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(40px, 8vw, 100px);
+            align-items: center;
+        }
+
+        .about-visual {
+            position: relative;
+        }
+
+        .about-image-frame {
+            position: relative;
+            aspect-ratio: 4/5;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--pine-pale) 50%, var(--bg-secondary));
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-image-frame::before {
+            content: '';
+            position: absolute;
+            inset: 12px;
+            border: 1px solid var(--bronze-gold);
+            border-radius: 2px;
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .about-image-inner {
+            width: 80%;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .about-guqin-icon {
+            font-size: 4rem;
+            opacity: 0.6;
+        }
+
+        .about-poem-text {
+            font-family: var(--font-brush);
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            text-align: center;
+            line-height: 2;
+            opacity: 0.7;
+        }
+
+        .about-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--paper-white);
+            font-family: var(--font-brush);
+            font-size: 1.5rem;
+            box-shadow: 0 10px 30px rgba(61, 107, 92, 0.3);
+        }
+
+        .about-badge small {
+            font-size: 0.6rem;
+            font-family: var(--font-sans);
+            letter-spacing: 0.1em;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+
+        .about-text h2 {
+            font-family: var(--font-serif);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.05em;
+            line-height: 1.3;
+        }
+
+        .about-text h2 .highlight {
+            color: var(--accent);
+        }
+
+        .about-text p {
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.2rem;
+            line-height: 2;
+            font-weight: 300;
+        }
+
+        .about-values {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .value-card {
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .value-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--shadow);
+        }
+
+        .value-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .value-title {
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .value-desc {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* 时间轴 */
+        .timeline {
+            margin-top: 4rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, var(--accent), var(--bronze-gold), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            transform: translateX(-3px);
+        }
+
+        .timeline-year {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-text {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* === 产品展示 === */
+        .shop {
+            padding: var(--section-pad) 0;
+            background: var(--bg-secondary);
+        }
+
+        .shop-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            padding: 0.5em 1.5em;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-muted);
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--ink-deep);
+            color: var(--paper-white);
+            border-color: var(--ink-deep);
+        }
+
+        [data-theme="dark"] .filter-btn.active,
+        [data-theme="dark"] .filter-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px var(--shadow);
+            border-color: var(--accent);
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            padding: 0.3em 0.8em;
+            background: var(--accent);
+            color: var(--paper-white);
+            border-radius: 2px;
+            z-index: 2;
+        }
+
+        .product-tag.limited {
+            background: var(--bronze);
+        }
+
+        .product-image {
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #2d2520, #3d6b5c, #1a1512);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(10,10,10,0.3));
+        }
+
+        .product-guqin-icon {
+            font-size: 4rem;
+            opacity: 0.5;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-guqin-icon {
+            transform: scale(1.1) rotate(-2deg);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .product-desc {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .product-specs {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.2rem;
+        }
+
+        .spec-item {
+            font-family: var(--font-sans);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .spec-dot {
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .product-price {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .product-price small {
+            font-size: 0.7rem;
+            font-family: var(--font-sans);
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .product-buy {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            padding: 0.5em 1.2em;
+            background: var(--ink-deep);
+            color: var(--paper-white);
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        [data-theme="dark"] .product-buy {
+            background: var(--accent);
+        }
+
+        .product-buy:hover {
+            opacity: 0.85;
+            transform: scale(1.05);
+        }
+
+        /* === 试听体验 === */
+        .audio-demo {
+            padding: var(--section-pad) 0;
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .audio-scene {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .scene-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .scene-visual {
+            height: 200px;
+            background: linear-gradient(135deg, #1a2e28, #0f1f1a, #1a2e28);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scene-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 80%, rgba(61, 107, 92, 0.4) 0%, transparent 60%);
+        }
+
+        .scene-icon { font-size: 3rem; opacity: 0.6; }
+
+        .scene-waves {
+            position: absolute;
+            bottom: 20px;
+            left: 0; right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 3px;
+        }
+
+        .wave-bar {
+            width: 3px;
+            background: rgba(168, 197, 184, 0.6);
+            border-radius: 2px;
+            animation: wave-anim ease-in-out infinite;
+        }
+
+        @keyframes wave-anim {
+            0%, 100% { height: 8px; }
+            50% { height: 30px; }
+        }
+
+        .scene-content {
+            padding: 1.5rem 2rem;
+        }
+
+        .scene-name {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .scene-desc {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+        }
+
+        /* 播放器 */
+        .audio-player {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .play-btn {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: var(--ink-deep);
+            border: none;
+            color: var(--paper-white);
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+
+        [data-theme="dark"] .play-btn {
+            background: var(--accent);
+        }
+
+        .play-btn:hover { transform: scale(1.1); }
+
+        .progress-bar {
+            flex: 1;
+            height: 2px;
+            background: var(--border);
+            border-radius: 1px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 1px;
+            width: 0%;
+            transition: width 0.1s;
+        }
+
+        .audio-time {
+            font-family: var(--font-sans);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            flex-shrink: 0;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        /* === 教学文化 === */
+        .learn {
+            padding: var(--section-pad) 0;
+            background: var(--bg-secondary);
+        }
+
+        .learn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .learn-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+        .learn-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px var(--shadow);
+            border-color: var(--accent);
+        }
+
+        .learn-number {
+            font-family: var(--font-brush);
+            font-size: 3rem;
+            color: var(--accent);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .learn-title {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .learn-desc {
+            font-family: var(--font-sans);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+        }
+
+        .learn-link {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* === 联系与购买 === */
+        .contact {
+            padding: var(--section-pad) 0;
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .telegram-box {
+            background: linear-gradient(135deg, #e8f4fd, #d0ecff);
+            border: 1px solid rgba(0, 136, 204, 0.2);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        [data-theme="dark"] .telegram-box {
+            background: linear-gradient(135deg, rgba(0, 136, 204, 0.1), rgba(0, 136, 204, 0.05));
+            border-color: rgba(0, 136, 204, 0.2);
+        }
+
+        .telegram-title {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            color: #0088cc;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+        }
+
+        .telegram-link {
+            font-family: var(--font-sans);
+            font-size: 1.1rem;
+            color: #0088cc;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            word-break: break-all;
+        }
+
+        .telegram-link:hover { text-decoration: underline; }
+
+        .payment-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .payment-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .payment-icon {
+            width: 40px; height: 40px;
+            background: var(--bg-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        /* FAQ */
+        .faq-list { display: flex; flex-direction: column; gap: 0; }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.2rem 0;
+            font-family: var(--font-serif);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            transition: color 0.3s;
+        }
+
+        .faq-question:hover { color: var(--accent); }
+
+        .faq-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            color: var(--text-muted);
+        }
+
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+            padding-bottom: 1.2rem;
+        }
+
+        .faq-answer p {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* 底部联系CTA */
+        .contact-cta-bar {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--ink-deep), #2d4a3c);
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-cta-bar::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(61, 107, 92, 0.3), transparent 70%);
+        }
+
+        .contact-cta-bar h3,
+        .contact-cta-bar p { position: relative; z-index: 1; }
+
+        .contact-cta-bar h3 {
+            font-family: var(--font-brush);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--paper-white);
+            margin-bottom: 1rem;
+        }
+
+        .contact-cta-bar p {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            color: rgba(245, 240, 232, 0.6);
+            margin-bottom: 2rem;
+        }
+
+        /* === 页脚 === */
+        .footer {
+            padding: 3rem 0 2rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand .nav-logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .footer-col a {
+            font-family: var(--font-sans);
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover { color: var(--accent); }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 32px; height: 32px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* === 页面切换动画 === */
+        .page-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .page-section.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === 视差效果 === */
+        .parallax-bg {
+            will-change: transform;
+        }
+
+        /* === 紧急横幅 === */
+        .urgency-banner {
+            background: linear-gradient(90deg, var(--ink-deep), #2d4a3c, var(--ink-deep));
+            color: var(--paper-white);
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-family: var(--font-sans);
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1001;
+        }
+
+        .urgency-banner .dot {
+            width: 5px; height: 5px;
+            background: var(--bronze-gold);
+            border-radius: 50%;
+        }
+
+        /* === 响应式 === */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-mobile-toggle { display: flex; }
+
+            .mobile-menu {
+                display: none;
+                position: fixed;
+                top: 72px; left: 0; right: 0; bottom: 0;
+                background: var(--bg-primary);
+                z-index: 999;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 2rem;
+            }
+
+            .mobile-menu.open { display: flex; }
+
+            .mobile-menu a {
+                font-family: var(--font-serif);
+                font-size: 1.5rem;
+                color: var(--text-primary);
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+            .mobile-menu a:hover { color: var(--accent); }
+
+            .about-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .footer-inner { grid-template-columns: 1fr 1fr; }
+            .hero-ctas { flex-direction: column; align-items: center; }
+            .about-values { grid-template-columns: 1fr; }
+            .products-grid { grid-template-columns: 1fr; }
+            .urgency-banner { font-size: 0.65rem; }
+        }
+
+        @media (max-width: 480px) {
+            .footer-inner { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 水墨扩散画布 -->
+<canvas id="ink-canvas"></canvas>
+
+<!-- 紧迫感横幅 -->
+<div class="urgency-banner">
+    <span>竹</span>
+    <span>每把古琴均为手工制作，限量供应</span>
+    <span class="dot"></span>
+    <span>支持 USDT / 支付宝 / 微信支付</span>
+    <span class="dot"></span>
+    <span>大师监制 · 终身质保</span>
+</div>
+
+<!-- 导航栏 -->
+<nav class="navbar" id="navbar" style="margin-top:36px;">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">
+            <span class="logo-char">♪</span>
+            <span>松风琴社</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="#about">品牌故事</a></li>
+            <li><a href="#shop">古琴选购</a></li>
+            <li><a href="#audio">试听体验</a></li>
+            <li><a href="#learn">修心习琴</a></li>
+            <li><a href="#contact">联系我们</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button class="theme-toggle" id="themeToggle" aria-label="切换深色模式">◐</button>
+            <a href="#contact" class="nav-cta">立即咨询</a>
+            <button class="nav-mobile-toggle" id="mobileToggle" aria-label="菜单">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- 移动端菜单 -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="closeMobile()">品牌故事</a>
+    <a href="#shop" onclick="closeMobile()">古琴选购</a>
+    <a href="#audio" onclick="closeMobile()">试听体验</a>
+    <a href="#learn" onclick="closeMobile()">修心习琴</a>
+    <a href="#contact" onclick="closeMobile()">联系我们</a>
+</div>
+
+<!-- 英雄区 -->
+<section class="hero" id="hero">
+    <div class="hero-bg parallax-bg" data-speed="0.3"></div>
+    <div class="hero-landscape">
+        <div class="mountain mountain-1"></div>
+        <div class="mountain mountain-2"></div>
+        <div class="mountain mountain-3"></div>
+        <div class="mountain mountain-4"></div>
+        <div class="mist-layer"></div>
+        <div class="mist-layer mist-layer-2"></div>
+    </div>
+    <div id="ink-particles"></div>
+
+    <div class="hero-content">
+        <div class="hero-brand">松 风 琴 社</div>
+        <h1 class="hero-title">
+            一琴一世界<br>
+            <span class="accent">松风入心声</span>
+        </h1>
+        <p class="hero-poem">松风入耳，琴意入心</p>
+        <p class="hero-desc">传承千年古琴文化，打造现代人的精神栖息地</p>
+        <div class="hero-ctas">
+            <a href="#shop" class="btn-primary"><span>了解古琴</span></a>
+            <a href="#contact" class="btn-secondary">立即选购</a>
+        </div>
+    </div>
+
+    <div class="hero-scroll">
+        <span>向下滑动</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- 信任背书条 -->
+<div class="trust-bar">
+    <div class="trust-items">
+        <div class="trust-item"><span class="trust-icon">木</span><span>百年老材 · 手工斫制</span></div>
+        <div class="trust-item"><span class="trust-icon">承</span><span>非遗传承人监制</span></div>
+        <div class="trust-item"><span class="trust-icon">音</span><span>每琴皆附音色证书</span></div>
+        <div class="trust-item"><span class="trust-icon">包</span><span>终身质保 · 顺丰保价</span></div>
+        <div class="trust-item"><span class="trust-icon">₮</span><span>支持 USDT 支付</span></div>
+    </div>
+</div>
+
+<!-- 品牌介绍 -->
+<section class="about" id="about">
+    <div class="container">
+        <div class="page-section">
+            <div class="section-label" style="display:block;text-align:center;">关于琴社</div>
+            <h2 class="section-title">以琴修心，以文化人</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="about-grid page-section">
+            <div class="about-visual">
+                <div class="about-image-frame">
+                    <div class="about-image-inner">
+                        <div class="about-guqin-icon">古</div>
+                        <div class="about-poem-text">
+                            巍巍兮高山<br>
+                            洋洋兮流水
+                        </div>
+                    </div>
+                </div>
+                <div class="about-badge">
+                    <span>始</span>
+                    <small>丙申年</small>
+                </div>
+            </div>
+
+            <div class="about-text">
+                <h2>传承<span class="highlight">千年古琴</span><br>文化精髓</h2>
+                <p>松风琴社创立于传统斫琴世家，汇聚数十年斫琴经验的大师，以"传承"为根，以"匠心"为魂，致力于让每一把古琴都成为承载文化、滋养心灵的载体。</p>
+                <p>我们相信：古琴不只是一件乐器，更是一种生活方式，一种修身养性的途径。在松风琴社，每一把琴都经由大师监制，从选材、斫制到调音，层层把关，确保品质。</p>
+
+                <div class="about-values">
+                    <div class="value-card">
+                        <span class="value-icon">林</span>
+                        <div class="value-title">传承</div>
+                        <div class="value-desc">千年斫琴技艺代代相传，坚守传统工艺精髓</div>
+                    </div>
+                    <div class="value-card">
+                        <span class="value-icon">心</span>
+                        <div class="value-title">修心</div>
+                        <div class="value-desc">以琴修心，在繁忙世界中寻得一方宁静</div>
+                    </div>
+                    <div class="value-card">
+                        <span class="value-icon">东</span>
+                        <div class="value-title">东方</div>
+                        <div class="value-desc">融合东方美学与现代审美，诠释文人精神</div>
+                    </div>
+                    <div class="value-card">
+                        <span class="value-icon">匠</span>
+                        <div class="value-title">匠心</div>
+                        <div class="value-desc">每一刀、每一漆皆凝聚匠人毕生心血</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-section" style="margin-top:4rem;">
+            <h3 style="font-family:var(--font-serif);font-size:1.3rem;text-align:center;margin-bottom:2rem;">琴社历程</h3>
+            <div class="timeline" style="max-width:600px;margin:0 auto;">
+                <div class="timeline-item">
+                    <div class="timeline-year">2016 · 丙申</div>
+                    <div class="timeline-text">松风琴社创立，汇集斫琴世家三代传人，开启古琴文化复兴之路</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2018 · 戊戌</div>
+                    <div class="timeline-text">首款"松风"系列古琴面世，获业内权威认可，收藏家追捧</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2020 · 庚子</div>
+                    <div class="timeline-text">推出线上教学平台，传播古琴文化，学员遍布全球三十余国</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2023 · 癸卯</div>
+                    <div class="timeline-text">非遗传承人工作室正式落成，开启"大师定制"系列服务</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2025 · 乙巳</div>
+                    <div class="timeline-text">品牌升级为「松风琴社」，打造东方生活方式全生态</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 产品展示 -->
+<section class="shop" id="shop">
+    <div class="container">
+        <div class="page-section">
+            <div class="section-label" style="display:block;text-align:center;">古琴选购</div>
+            <h2 class="section-title">匠心斫制 · 音韵天成</h2>
+            <p class="section-subtitle">每一把琴，都是独一无二的孤品</p>
+            <div class="divider"></div>
+        </div>
+
+        <div class="shop-filters page-section">
+            <button class="filter-btn active" data-filter="all">全部</button>
+            <button class="filter-btn" data-filter="beginner">初学优选</button>
+            <button class="filter-btn" data-filter="collection">收藏珍品</button>
+            <button class="filter-btn" data-filter="master">名家定制</button>
+        </div>
+
+        <div class="products-grid page-section" id="productsGrid">
+            <div class="product-card" data-category="beginner">
+                <span class="product-tag">初学推荐</span>
+                <div class="product-image"><div class="product-guqin-icon">琴</div></div>
+                <div class="product-info">
+                    <div class="product-category">初学款</div>
+                    <div class="product-name">清风 · 桐木练习琴</div>
+                    <div class="product-desc">精选百年老桐木，音色温润饱满，适合初学者入门修习。传统工艺制作，油漆工艺考究，手感柔和。</div>
+                    <div class="product-specs">
+                        <div class="spec-item"><span class="spec-dot"></span>桐木面板</div>
+                        <div class="spec-item"><span class="spec-dot"></span>鹿角灰胎</div>
+                        <div class="spec-item"><span class="spec-dot"></span>音色：温润</div>
+                    </div>
+                    <div class="product-footer">
+                        <div class="product-price">¥3,800 <small>起 / 支持USDT</small></div>
+                        <a href="#contact" class="product-buy">立即购买</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="beginner">
+                <span class="product-tag">性价比</span>
+                <div class="product-image" style="background:linear-gradient(135deg,#2d2520,#5a3a2a,#1a1512);"><div class="product-guqin-icon">琴</div></div>
+                <div class="product-info">
+                    <div class="product-category">初学款</div>
+                    <div class="product-name">流水 · 杉木入门琴</div>
+                    <div class="product-desc">老杉木为材，音色清远透亮，共鸣优异。适合有一定基础的习琴者，可陪伴琴艺精进之路。</div>
+                    <div class="product-specs">
+                        <div class="spec-item"><span class="spec-dot"></span>老杉木</div>
+                        <div class="spec-item"><span class="spec-dot"></span>生漆工艺</div>
+                        <div class="spec-item"><span class="spec-dot"></span>音色：清远</div>
+                    </div>
+                    <div class="product-footer">
+                        <div class="product-price">¥5,200 <small>起 / 支持USDT</small></div>
+                        <a href="#contact" class="product-buy">立即购买</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="collection">
+                <span class="product-tag limited">收藏级</span>
+                <div class="product-image" style="background:linear-gradient(135deg,#1a2e28,#3d6b5c,#0f1f1a);"><div class="product-guqin-icon">琴</div></div>
+                <div class="product-info">
+                    <div class="product-category">收藏款</div>
+                    <div class="product-name">松涛 · 老杉木珍藏琴</div>
+                    <div class="product-desc">百年老杉木为面，音质松透沉静，余韵悠长。限量十二把，每把均有独立编号与收藏证书。</div>
+                    <div class="product-specs">
+                        <div class="spec-item"><span class="spec-dot"></span>百年老杉</div>
+                        <div class="spec-item"><span class="spec-dot"></span>大师监制</div>
+                        <div class="spec-item"><span class="spec-dot"></span>音色：松透</div>
+                    </div>
+                    <div class="product-footer">
+                        <div class="product-price">¥18,000 <small>起 / 支持USDT</small></div>
+                        <a href="#contact" class="product-buy">立即购买</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="collection">
+                <span class="product-tag limited">限量孤品</span>
+                <div class="product-image" style="background:linear-gradient(135deg,#2a1f1a,#8b7355,#1a1512);"><div class="product-guqin-icon">琴</div></div>
+                <div class="product-info">
+                    <div class="product-category">收藏款</div>
+                    <div class="product-name">高山 · 枯木琴（孤品）</div>
+                    <div class="product-desc">采用枯死百年以上的梧桐老木，天然形态与古琴融为一体。世上仅此一把，极具收藏与文化价值。</div>
+                    <div class="product-specs">
+                        <div class="spec-item"><span class="spec-dot"></span>枯木梧桐</div>
+                        <div class="spec-item"><span class="spec-dot"></span>孤品唯一</div>
+                        <div class="spec-item"><span class="spec-dot"></span>音色：苍古</div>
+                    </div>
+                    <div class="product-footer">
+                        <div class="product-price">¥58,000 <small>孤品 / 可议价</small></div>
+                        <a href="#contact" class="product-buy">立即购买</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="master">
+                <span class="product-tag limited">大师定制</span>
+                <div class="product-image" style="background:linear-gradient(135deg,#1a1512,#3d6b5c,#0a0a0a);"><div class="product-guqin-icon">琴</div></div>
+                <div class="product-info">
+                    <div class="product-category">名家定制</div>
+                    <div class="product-name">听涛 · 大师亲斫（定制）</div>
+                    <div class="product-desc">由非遗传承人亲自斫制，从选材到完工全程参与。接受音色、材质、款式的个性化定制，打造专属之琴。</div>
+                    <div class="product-specs">
+                        <div class="spec-item"><span class="spec-dot"></span>非遗传人亲斫</div>
+                        <div class="spec-item"><span class="spec-dot"></span>全程定制</div>
+                        <div class="spec-item"><span class="spec-dot"></span>音色：随心</div>
+                    </div>
+                    <div class="product-footer">
+                        <div class="product-price">¥38,000 <small>起 / 详询定制</small></div>
+                        <a href="#contact" class="product-buy">咨询定制</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="master">
+                <span class="product-tag limited">珍稀待售</span>
+                <div class="product-image" style="background:linear-gradient(135deg,#0f0d0b,#5a4a3a,#1a1512);"><div class="product-guqin-icon">琴</div></div>
+                <div class="product-info">
+                    <div class="product-category">名家定制</div>
+                    <div class="product-name">云起 · 名家收藏琴（待售）</div>
+                    <div class="product-desc">琴界泰斗监制款，音质清微淡远，深得文人雅士喜爱。附琴师亲笔题字、收藏证书与音色分析报告。</div>
+                    <div class="product-specs">
+                        <div class="spec-item"><span class="spec-dot"></span>泰斗监制</div>
+                        <div class="spec-item"><span class="spec-dot"></span>附题字</div>
+                        <div class="spec-item"><span class="spec-dot"></span>音色：清远</div>
+                    </div>
+                    <div class="product-footer">
+                        <div class="product-price">¥128,000 <small>待售 / 预约品鉴</small></div>
+                        <a href="#contact" class="product-buy">预约品鉴</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align:center;margin-top:3rem;" class="page-section">
+            <p style="font-family:var(--font-sans);font-size:0.85rem;color:var(--text-muted);margin-bottom:1.5rem;">没有找到心仪的琴？支持完全定制，讲述您的需求</p>
+            <a href="#contact" class="btn-primary"><span>咨询定制服务 →</span></a>
+        </div>
+    </div>
+</section>
+
+<!-- 试听体验 -->
+<section class="audio-demo" id="audio">
+    <div class="container">
+        <div class="page-section">
+            <div class="section-label" style="display:block;text-align:center;">试听体验</div>
+            <h2 class="section-title">聆听天籁 · 感受古韵</h2>
+            <p class="section-subtitle">每一段琴音，都是一次心灵的远行</p>
+            <div class="divider"></div>
+        </div>
+
+        <div class="audio-scene page-section">
+            <div class="scene-card">
+                <div class="scene-visual">
+                    <span class="scene-icon">水</span>
+                    <div class="scene-waves">
+                        <div class="wave-bar" style="animation-delay:0s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.2s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.4s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.6s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.8s;"></div>
+                        <div class="wave-bar" style="animation-delay:1s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.3s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.5s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.1s;"></div>
+                    </div>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-name">流水 · 泛音</div>
+                    <div class="scene-desc">取自《流水》，泛音如山涧清泉，叮咚悦耳，涤荡心尘</div>
+                    <div class="audio-player">
+                        <button class="play-btn" onclick="togglePlay(this)" aria-label="播放">▶</button>
+                        <div class="progress-bar" onclick="seekAudio(this, event)">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <div class="audio-time">0:00 / 4:32</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scene-card">
+                <div class="scene-visual" style="background:linear-gradient(135deg,#1a1512,#2d4a3c,#1a1512);">
+                    <span class="scene-icon">雁</span>
+                    <div class="scene-waves">
+                        <div class="wave-bar" style="animation-delay:0.5s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.1s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.7s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.3s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.9s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.2s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.6s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.4s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.8s;"></div>
+                    </div>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-name">平沙落雁 · 散音</div>
+                    <div class="scene-desc">取自《平沙落雁》，散音深沉浑厚，如雁阵掠过秋水，意境悠远</div>
+                    <div class="audio-player">
+                        <button class="play-btn" onclick="togglePlay(this)" aria-label="播放">▶</button>
+                        <div class="progress-bar" onclick="seekAudio(this, event)">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <div class="audio-time">0:00 / 6:15</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scene-card">
+                <div class="scene-visual" style="background:linear-gradient(135deg,#2d2520,#5a3a2a,#1a1512);">
+                    <span class="scene-icon">山</span>
+                    <div class="scene-waves">
+                        <div class="wave-bar" style="animation-delay:0.3s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.6s;"></div>
+                        <div class="wave-bar" style="animation-delay:0s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.4s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.7s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.1s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.5s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.2s;"></div>
+                        <div class="wave-bar" style="animation-delay:0.8s;"></div>
+                    </div>
+                </div>
+                <div class="scene-content">
+                    <div class="scene-name">高山 · 按音</div>
+                    <div class="scene-desc">取自《高山》，按音刚健有力，如山峦叠嶂，气势磅礴而深沉内敛</div>
+                    <div class="audio-player">
+                        <button class="play-btn" onclick="togglePlay(this)" aria-label="播放">▶</button>
+                        <div class="progress-bar" onclick="seekAudio(this, event)">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <div class="audio-time">0:00 / 5:48</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p style="text-align:center;font-family:var(--font-sans);font-size:0.8rem;color:var(--text-muted);margin-top:2rem;" class="page-section">
+            所有音频均为松风琴社实琴录制 · 真实还原每一把琴的独特音色
+        </p>
+    </div>
+</section>
+
+<!-- 教学与文化 -->
+<section class="learn" id="learn">
+    <div class="container">
+        <div class="page-section">
+            <div class="section-label" style="display:block;text-align:center;">修心习琴</div>
+            <h2 class="section-title">习琴之路 · 心法传承</h2>
+            <p class="section-subtitle">不为喧嚣，只为一曲清音</p>
+            <div class="divider"></div>
+        </div>
+
+        <div class="learn-grid page-section">
+            <div class="learn-card">
+                <div class="learn-number">壹</div>
+                <div class="learn-title">认识古琴</div>
+                <div class="learn-desc">了解古琴的历史、构造与文化意义。从伏羲、神农到唐宋，感受千年乐器的演变与精神内涵。</div>
+                <div class="learn-link">开始学习 →</div>
+            </div>
+
+            <div class="learn-card">
+                <div class="learn-number">贰</div>
+                <div class="learn-title">指法入门</div>
+                <div class="learn-desc">右手八法：抹、挑、勾、剔、擘、托、打、摘。左手按音、走音技法，从基础开始打好根基。</div>
+                <div class="learn-link">观看教程 →</div>
+            </div>
+
+            <div class="learn-card">
+                <div class="learn-number">叁</div>
+                <div class="learn-title">初级曲目</div>
+                <div class="learn-desc">《仙翁操》《秋风词》《良宵引》——三首入门名曲，涵盖散、按、撮等基本技法与意境表达。</div>
+                <div class="learn-link">学习曲目 →</div>
+            </div>
+
+            <div class="learn-card">
+                <div class="learn-number">肆</div>
+                <div class="learn-title">中级进阶</div>
+                <div class="learn-desc">《平沙落雁》《流水》《关山月》——经典名曲精讲，深入理解琴曲意境与情感表达。</div>
+                <div class="learn-link">深入研习 →</div>
+            </div>
+
+            <div class="learn-card">
+                <div class="learn-number">伍</div>
+                <div class="learn-title">修心养性</div>
+                <div class="learn-desc">古琴与禅茶、书法、太极的融合之道。在习琴中观照内心，在生活中体悟东方智慧。</div>
+                <div class="learn-link">探索智慧 →</div>
+            </div>
+
+            <div class="learn-card">
+                <div class="learn-number">陆</div>
+                <div class="learn-title">琴学理论</div>
+                <div class="learn-desc">琴谱识读、琴论研习、历代琴论精选。以理论夯实实践，以文化滋养技法。</div>
+                <div class="learn-link">研读经典 →</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 联系与购买 -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="page-section">
+            <div class="section-label" style="display:block;text-align:center;">联系我们</div>
+            <h2 class="section-title">以琴会友 · 以心相交</h2>
+            <p class="section-subtitle">期待与您，共赴一场古琴之约</p>
+            <div class="divider"></div>
+        </div>
+
+        <div class="contact-grid page-section">
+            <div class="contact-info">
+                <h3>购买咨询</h3>
+                <p>我们提供一对一的专业购琴咨询服务。无论您是初学者还是资深藏家，都能在这里找到最合适的琴。欢迎通过以下方式联系我们。</p>
+
+                <div class="telegram-box">
+                    <div class="telegram-title">Telegram 客服</div>
+                    <a href="https://t.me/songfengqinshe" class="telegram-link" target="_blank" rel="noopener">
+                        @songfengqinshe
+                    </a>
+                </div>
+
+                <div class="payment-info">
+                    <div class="payment-item">
+                        <div class="payment-icon">₮</div>
+                        <div>
+                            <strong>USDT 支付</strong><br>
+                            <small style="color:var(--text-muted);">TRC20 网络，便捷安全</small>
+                        </div>
+                    </div>
+                    <div class="payment-item">
+                        <div class="payment-icon">支</div>
+                        <div>
+                            <strong>支付宝 / 微信</strong><br>
+                            <small style="color:var(--text-muted);">人民币结算，支持对公转账</small>
+                        </div>
+                    </div>
+                    <div class="payment-item">
+                        <div class="payment-icon">包</div>
+                        <div>
+                            <strong>顺丰保价包邮</strong><br>
+                            <small style="color:var(--text-muted);">终身质保，放心购买</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ -->
+                <div class="faq-list">
+                    <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin-bottom:1rem;">常见问题</h3>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            如何判断古琴品质？
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>一看材质（桐木、杉木面板，梓木底板）；二看漆艺（生漆为上）；三听音色（匀、润、静为佳）；四查工艺（槽腹结构、灰胎质地）。松风琴社每把琴均附专业音色鉴定证书。</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            初学者如何选琴？
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>初学者建议选择音色温润、手感舒适的练习琴。不必追求高价，合适最重要。松风琴社有专为初学者设计的入门系列，价格从 ¥3,800 起，性价比极高。</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            支持退换吗？有售后吗？
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>收到琴后 7 天内可无理由退换（需保持原状）。所有琴均享受终身质保，琴弦、断弦等问题均可联系我们协助处理。收藏款另附保养指南。</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            古琴如何保养？
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>避免暴晒、雨淋与极端干燥；琴弦建议每半年更换一次；用干布轻拭琴面，不可用化学清洁剂。冬季北方地区需注意加湿，避免琴身开裂。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:2rem;margin-bottom:2rem;">
+                    <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin-bottom:1.5rem;">琴社地址</h3>
+                    <p style="font-family:var(--font-sans);font-size:0.85rem;color:var(--text-secondary);line-height:1.8;margin-bottom:1.5rem;">
+                        北京市朝阳区 · 非遗传承人工作室<br>
+                        （来访需提前预约）
+                    </p>
+                    <div style="aspect-ratio:16/9;background:linear-gradient(135deg,#e8e0d5,#d5cec3);border-radius:4px;display:flex;align-items:center;justify-content:center;">
+                        <div style="text-align:center;">
+                            <div style="font-size:2rem;margin-bottom:0.5rem;">位</div>
+                            <div style="font-family:var(--font-sans);font-size:0.8rem;color:var(--text-muted);">来访请提前预约</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:2rem;">
+                    <h3 style="font-family:var(--font-serif);font-size:1.2rem;margin-bottom:1.5rem;">买家心声</h3>
+                    <div style="display:flex;flex-direction:column;gap:1.2rem;">
+                        <div style="padding:1.2rem;background:var(--bg-primary);border-radius:4px;border-left:2px solid var(--accent);">
+                            <p style="font-family:var(--font-serif);font-size:0.85rem;color:var(--text-secondary);font-style:italic;margin-bottom:0.8rem;">"琴到手后迫不及待试弹，音色温润如玉，完全超出预期。商家服务也非常耐心，五星推荐。"</p>
+                            <div style="font-family:var(--font-sans);font-size:0.72rem;color:var(--text-muted);">— 上海 · 张先生（清风系列）</div>
+                        </div>
+                        <div style="padding:1.2rem;background:var(--bg-primary);border-radius:4px;border-left:2px solid var(--bronze);">
+                            <p style="font-family:var(--font-serif);font-size:0.85rem;color:var(--text-secondary);font-style:italic;margin-bottom:0.8rem;">"买了收藏级的松涛，音质沉静深远，放在书房中本身就是一件艺术品。值得。"</p>
+                            <div style="font-family:var(--font-sans);font-size:0.72rem;color:var(--text-muted);">— 深圳 · 李女士（松涛珍藏琴）</div>
+                        </div>
+                        <div style="padding:1.2rem;background:var(--bg-primary);border-radius:4px;border-left:2px solid var(--pine-light);">
+                            <p style="font-family:var(--font-serif);font-size:0.85rem;color:var(--text-secondary);font-style:italic;margin-bottom:0.8rem;">"大师定制款，等了三个月，但每一分等待都是值得的。这把琴已经成为我生命中最重要的存在。"</p>
+                            <div style="font-family:var(--font-sans);font-size:0.72rem;color:var(--text-muted);">— 新加坡 · 陈先生（听涛定制琴）</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部联系CTA -->
+        <div class="contact-cta-bar page-section">
+            <h3>以琴会友，共赴知音之约</h3>
+            <p>无论您是初探古琴，还是寻找珍藏，这里都有您的一席之地</p>
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+                <a href="https://t.me/songfengqinshe" class="btn-primary" target="_blank" style="background:#0088cc;">
+                    <span>Telegram 咨询 →</span>
+                </a>
+                <a href="#shop" class="btn-secondary" style="border-color:rgba(245,240,232,0.3);color:var(--paper-white);">
+                    浏览全部古琴
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="#" class="nav-logo">
+                    <span class="logo-char">♪</span>
+                    <span>松风琴社</span>
+                </a>
+                <p>传承千年古琴文化<br>打造现代人的精神栖息地<br>匠心斫制，音韵天成</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>产品分类</h4>
+                <ul>
+                    <li><a href="#shop">初学优选</a></li>
+                    <li><a href="#shop">收藏珍品</a></li>
+                    <li><a href="#shop">名家定制</a></li>
+                    <li><a href="#contact">定制服务</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>琴学之路</h4>
+                <ul>
+                    <li><a href="#learn">认识古琴</a></li>
+                    <li><a href="#learn">指法入门</a></li>
+                    <li><a href="#learn">初级曲目</a></li>
+                    <li><a href="#learn">修心养性</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>联系我们</h4>
+                <ul>
+                    <li><a href="https://t.me/songfengqinshe" target="_blank">Telegram</a></li>
+                    <li><a href="#">微信客服</a></li>
+                    <li><a href="#">支付宝</a></li>
+                    <li><a href="#contact">常见问题</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 松风琴社 · Songfeng Qinshe · 保留所有权利</p>
+            <div class="footer-social">
+                <a href="https://t.me/songfengqinshe" class="social-link" target="_blank" title="Telegram">✈</a>
+                <a href="#" class="social-link" title="微信">微</a>
+                <a href="#" class="social-link" title="小红书">书</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    // 水墨扩散效果
+    var canvas = document.getElementById('ink-canvas');
+    var ctx = canvas.getContext('2d');
+    var inkDrops = [];
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    function InkDrop(x, y) {
+        this.x = x;
+        this.y = y;
+        this.radius = 0;
+        this.maxRadius = Math.random() * 60 + 30;
+        this.speed = Math.random() * 0.8 + 0.3;
+        this.opacity = 0.4;
+        this.alive = true;
+        var colors = ['#3d6b5c', '#8b7355', '#5a4a3a', '#2d4a3c', '#6b8a78'];
+        this.color = colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    InkDrop.prototype.update = function() {
+        if (!this.alive) return;
+        this.radius += this.speed;
+        this.opacity -= 0.004;
+        if (this.opacity <= 0 || this.radius >= this.maxRadius) {
+            this.alive = false;
+        }
+    };
+
+    InkDrop.prototype.draw = function(c) {
+        if (!this.alive) return;
+        var grad = c.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+        var alpha = Math.floor(this.opacity * 255).toString(16);
+        if (alpha.length === 1) alpha = '0' + alpha;
+        grad.addColorStop(0, this.color + '40');
+        grad.addColorStop(0.5, this.color + alpha);
+        grad.addColorStop(1, 'transparent');
+        c.beginPath();
+        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        c.fillStyle = grad;
+        c.fill();
+    };
+
+    var lastInkTime = 0;
+    document.addEventListener('mousemove', function(e) {
+        var now = Date.now();
+        if (now - lastInkTime > 80) {
+            inkDrops.push(new InkDrop(e.clientX, e.clientY));
+            lastInkTime = now;
+        }
+    });
+
+    function animateInk() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        inkDrops = inkDrops.filter(function(d) { return d.alive; });
+        inkDrops.forEach(function(d) { d.update(); d.draw(ctx); });
+        requestAnimationFrame(animateInk);
+    }
+    animateInk();
+
+    // 飘浮墨点
+    var particleContainer = document.getElementById('ink-particles');
+    for (var i = 0; i < 15; i++) {
+        var particle = document.createElement('div');
+        particle.className = 'ink-particle';
+        particle.style.left = (Math.random() * 100) + '%';
+        particle.style.top = (Math.random() * 100) + '%';
+        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        particle.style.animationDelay = (Math.random() * 10) + 's';
+        var size = Math.random() * 3 + 1;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particleContainer.appendChild(particle);
+    }
+
+    // 导航栏滚动效果
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // 移动端菜单
+    var mobileToggle = document.getElementById('mobileToggle');
+    var mobileMenu = document.getElementById('mobileMenu');
+
+    mobileToggle.addEventListener('click', function() {
+        mobileMenu.classList.toggle('open');
+        var spans = mobileToggle.querySelectorAll('span');
+        if (mobileMenu.classList.contains('open')) {
+            spans[0].style.transform = 'rotate(45deg) translate(4px, 4px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translate(4px, -4px)';
+        } else {
+            spans[0].style.transform = '';
+            spans[1].style.opacity = '';
+            spans[2].style.transform = '';
+        }
+    });
+
+    window.closeMobile = function() {
+        mobileMenu.classList.remove('open');
+        var spans = mobileToggle.querySelectorAll('span');
+        spans[0].style.transform = '';
+        spans[1].style.opacity = '';
+        spans[2].style.transform = '';
+    };
+
+    // 深色模式切换
+    var themeToggle = document.getElementById('themeToggle');
+    var savedTheme = localStorage.getItem('songfeng-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'dark' ? '日' : '月';
+
+    themeToggle.addEventListener('click', function() {
+        var current = document.documentElement.getAttribute('data-theme');
+        var next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('songfeng-theme', next);
+        themeToggle.textContent = next === 'dark' ? '日' : '月';
+    });
+
+    // 视差滚动
+    var parallaxBgs = document.querySelectorAll('.parallax-bg');
+    window.addEventListener('scroll', function() {
+        var scrollY = window.scrollY;
+        parallaxBgs.forEach(function(el) {
+            var speed = parseFloat(el.dataset.speed) || 0.3;
+            el.style.transform = 'translateY(' + (scrollY * speed) + 'px)';
+        });
+    });
+
+    // 滚动显示动画
+    var observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.page-section').forEach(function(el) {
+        observer.observe(el);
+    });
+
+    // 产品筛选
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var productCards = document.querySelectorAll('.product-card');
+
+    filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            filterBtns.forEach(function(b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            var filter = btn.dataset.filter;
+
+            productCards.forEach(function(card) {
+                if (filter === 'all' || card.dataset.category === filter) {
+                    card.style.display = '';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(function() {
+                        card.style.transition = 'opacity 0.4s, transform 0.4s';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    // FAQ 折叠
+    document.querySelectorAll('.faq-question').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var item = btn.parentElement;
+            var wasOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+            if (!wasOpen) item.classList.add('open');
+        });
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            var href = this.getAttribute('href');
+            if (href === '#') return;
+            e.preventDefault();
+            var target = document.querySelector(href);
+            if (target) {
+                var y = target.getBoundingClientRect().top + window.scrollY - 80;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // 播放器模拟
+    var progressIntervals = [];
+    var totalTimes = [272, 375, 348]; // 4:32, 6:15, 5:48
+
+    window.togglePlay = function(btn) {
+        var player = btn.closest('.audio-player');
+        var fill = player.querySelector('.progress-fill');
+        var timeEl = player.querySelector('.audio-time');
+        var allBtns = [].slice.call(document.querySelectorAll('.play-btn'));
+        var idx = allBtns.indexOf(btn);
+        var totalSec = totalTimes[idx] || 272;
+
+        if (btn.dataset.playing === 'true') {
+            clearInterval(progressIntervals[idx]);
+            btn.dataset.playing = 'false';
+            btn.textContent = '▶';
+        } else {
+            // 暂停其他
+            allBtns.forEach(function(b, i) {
+                if (b !== btn && b.dataset.playing === 'true') {
+                    clearInterval(progressIntervals[i]);
+                    b.dataset.playing = 'false';
+                    b.textContent = '▶';
+                }
+            });
+
+            clearInterval(progressIntervals[idx]);
+            btn.dataset.playing = 'true';
+            btn.textContent = '||';
+
+            var progress = parseFloat(fill.style.width) || 0;
+            progressIntervals[idx] = setInterval(function() {
+                progress += 0.2;
+                if (progress >= 100) {
+                    progress = 0;
+                    clearInterval(progressIntervals[idx]);
+                    btn.dataset.playing = 'false';
+                    btn.textContent = '▶';
+                }
+                fill.style.width = progress + '%';
+                var currentSec = Math.floor((progress / 100) * totalSec);
+                var m = Math.floor(currentSec / 60);
+                var s = currentSec % 60;
+                var totalM = Math.floor(totalSec / 60);
+                var totalS = totalSec % 60;
+                timeEl.textContent = m + ':' + (s < 10 ? '0' : '') + s + ' / ' + totalM + ':' + (totalS < 10 ? '0' : '') + totalS;
+            }, 500);
+        }
+    };
+
+    window.seekAudio = function(bar, e) {
+        var rect = bar.getBoundingClientRect();
+        var percent = ((e.clientX - rect.left) / rect.width) * 100;
+        bar.querySelector('.progress-fill').style.width = Math.max(0, Math.min(100, percent)) + '%';
+    };
+});
+</script>
+
+</body>
+</html>
