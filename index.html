@@ -151,7 +151,7 @@
         .navbar {
             position: fixed;
             top: 0; left: 0; right: 0;
-            z-index: 1000;
+            z-index: 1002;
             padding: 0 clamp(20px, 5vw, 60px);
             transition: all 0.4s ease;
         }
@@ -292,6 +292,7 @@
         .hero {
             position: relative;
             min-height: 100vh;
+            padding-top: 52px; /* 导航栏 + 紧迫横幅高度 */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1466,9 +1467,10 @@
             .mobile-menu {
                 display: none;
                 position: fixed;
-                top: 72px; left: 0; right: 0; bottom: 0;
+                top: 0; left: 0; right: 0; bottom: 0;
                 background: var(--bg-primary);
-                z-index: 999;
+                z-index: 1003;
+                padding-top: 52px;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
@@ -1494,6 +1496,7 @@
             .about-values { grid-template-columns: 1fr; }
             .products-grid { grid-template-columns: 1fr; }
             .urgency-banner { font-size: 0.65rem; }
+            .hero { padding-top: 110px; }
         }
 
         @media (max-width: 480px) {
